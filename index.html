@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIS & Remote Sensing Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script src="script.js"></script>
+  <!-- Remove Mapbox CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body class="bg-light">
+  <!-- Navigation Bar -->
+  <nav
+    class="fixed top-0 left-0 w-full bg-white bg-opacity-95 backdrop-blur-sm shadow-sm z-50 transform -translate-y-full transition-transform duration-300"
+    id="main-nav">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#" class="text-2xl logo-font text-primary">Fahad Karim</a>
+      <div class="hidden md:flex space-x-8">
+        <a href="#about" class="text-gray-700 hover:text-primary transition-colors font-medium">About</a>
+        <a href="#skills" class="text-gray-700 hover:text-primary transition-colors font-medium">Skills</a>
+        <a href="#projects" class="text-gray-700 hover:text-primary transition-colors font-medium">Projects</a>
+        <a href="#featured" class="text-gray-700 hover:text-primary transition-colors font-medium">Featured</a>
+        <a href="#experience" class="text-gray-700 hover:text-primary transition-colors font-medium">Experience</a>
+        <a href="#education" class="text-gray-700 hover:text-primary transition-colors font-medium">Education</a>
+        <a href="#contact" class="text-gray-700 hover:text-primary transition-colors font-medium">Contact</a>
+      </div>
+      <div class="md:hidden w-8 h-8 flex items-center justify-center cursor-pointer" id="mobile-menu-button">
+        <i class="fas fa-bars text-xl text-gray-700"></i>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white w-full border-t border-gray-100 shadow-lg">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="#about" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">About</a>
+        <a href="#skills" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Skills</a>
+        <a href="#projects" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Projects</a>
+        <a href="#featured" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Featured</a>
+        <a href="#experience" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Experience</a>
+        <a href="#education" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Education</a>
+        <a href="#contact" class="text-gray-700 py-2 font-medium hover:text-primary transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="about" class="h-screen relative overflow-hidden bg-black">
+    <video autoPlay loop muted class="absolute inset-0 w-full h-full object-cover z-0">
+      <source src="assets\hvv.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black/15 z-10"></div>
+    <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-20">
+      <div class="flex items-center gap-6">
+        <div class="relative w-32 h-32 border-4 border-white/20 rounded-full overflow-hidden shadow-xl">
+          <img src="assets\pf.png" alt="Fahad Karim" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="text-left">
+          <h1 class="text-3xl font-bold text-white">Fahad Karim</h1>
+          <p class="text-l text-gray-300">GIS and Remote Sensing Expert/Dev</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Expertise</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">Technical Skills</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+      <!-- Ticker -->
+      <div class="ticker-container">
+        <div class="ticker-track" id="tickerTrack">
+        </div>
+      </div>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-map-marked-alt text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Geospatial Analysis</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Advanced spatial modeling, terrain analysis, and network
+            analysis using industry-standard tools and custom scripting solutions.</p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-satellite-dish text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Remote Sensing</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Specialized in satellite imagery processing, classification,
+            and
+            extraction of meaningful insights from earth observation data.</p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-code text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Geospatial Development</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Proficient in Python (GDAL, GeoPandas, GeoAI), and JavaScript
+            for geospatial data
+            processing, automation, and web mapping applications.</p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-database text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Spatial Databases</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Experienced in designing and managing spatial databases using
+            PostgreSQL/PostGIS and SQL Server Spatial.</p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-map text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Web Mapping</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Skilled in developing interactive web maps and applications
+            using
+            Leaflet, Mapbox, and ArcGIS Online.</p>
+        </div>
+
+        <div
+          class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-secondary/20">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+              <i class="fas fa-chart-line text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-dark">Google Earth Engine</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed pl-18">Using Google Earth Engine to analyze and visualize geospatial
+            data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Portfolio</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">GIS & Remote Sensing Projects</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-12">
+        <!-- Project 1 -->
+        <div class="project" id="project1">
+          <div class="map-container">
+            <div id="map1" class="map"></div>
+            <div class="layer-control">
+              <button class="layer-btn active" data-layer="layer1-1">Cropland Before Flood</button>
+              <button class="layer-btn" data-layer="layer1-2">Cropland After Flood</button>
+              <button class="layer-btn" data-layer="layer1-3">Flood Extent</button>
+              <button class="layer-btn" data-layer="layer1-4">Surface Water</button>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">2022 Flood Analysis (Sindh, Pakistan)</h2>
+            <p class="project-description mt-4">
+              In this project, I assessed the 2022 flood's impact on agricultural land in Sindh, Pakistan. Project integrate datasets including the Dynamic World V1 Land Use/Land Cover dataset (WRI, August 2022), DEM data from HydroSHEDS (2000), Global Surface Water data (1984–2022), CHIRPS precipitation data (2022), and Sentinel-1 SAR GRD data (ESA) to map flood extent and evaluate its effects on productivity and food security. Below are the Cropland before and after flood rasters, Rough Flood Extent, and Sindh's surface water.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">ArcGIS
+                Pro</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Python</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Sentinel-2</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Machine
+                Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project" id="project2">
+          <div class="map-container">
+            <div id="map2" class="map"></div>
+            <div class="layer-control">
+              <button class="layer-btn active" data-layer="layer2-1">Urban Density 2020</button>
+              <button class="layer-btn" data-layer="layer2-2">Urban Density 2024</button>
+              <button class="layer-btn" data-layer="layer2-3">Aerosol Index 2020</button>
+              <button class="layer-btn" data-layer="layer2-4">Aerosol Index 2024</button>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">Urban Density and Aerosol Index Analysis (Lahore)</h2>
+            <p class="project-description mt-4">
+              In this project, I assessed urban density and air quality in Lahore, Pakistan in 2024 using Landsat 8 Collection 2 Tier 1 Level 2 data (LANDSAT/LC08/C02/T1_L2) and Sentinel-5P products (COPERNICUS/S5P/OFFL/L3_CO, NRTI/L3_NO2, NRTI/L3_HCHO, NRTI/L3_SO2, OFFL/L3_CH4, NRTI/L3_O3, NRTI/L3_AER_AI). Landsat composite is used to compute spectral indices (NDBI and NBR2) and derive built-up and urban density. These are compared with the 2020 urban density and Aerosol Index to monitor changes.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">ArcGIS
+                Pro</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Sentinel-5P</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">NBR2</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">NDBI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project" id="project3">
+          <div class="map-container">
+            <div id="map3" class="map"></div>
+            <div class="layer-control">
+              <button class="layer-btn active" data-layer="layer3-1">PCI 2001-2022</button>
+              <button class="layer-btn" data-layer="layer3-2">SPEI 2001-2022</button>
+              <button class="layer-btn" data-layer="layer3-3">VHI 2001-2022</button>
+              <button class="layer-btn" data-layer="layer3-4">WUE 2001-2022</button>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">Drought Analysis (Balochistan, Pakistan)</h2>
+            <p class="project-description mt-4">
+              In this project, I conducted drought analysis for Balochistan, Pakistan (2001–2022) by calculating key indices Precipitation Condition Index (PCI), Vegetation Health Index (VHI), Standradized Precipitation Evapotranspiration Index (SPEI), and Water Use Efficiency (WUE) using MODIS data. The Project employed MOD13Q1 (MODIS/Terra Vegetation Indices 08-Day L3 Global 250m) for NDVI and MOD11A1 (MODIS/Terra Land Surface Temperature/Emissivity Daily L3 Global 1km) for LST, with 2001-2022 drought maps prominently displayed.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">QGIS</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">OBIA</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">SVM</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Time-Series Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project" id="project4">
+          <div class="map-container">
+            <div id="map4" class="map"></div>
+            <div class="layer-control">
+              <button class="layer-btn active" data-layer="layer4-1">March NDVI 2015</button>
+              <button class="layer-btn" data-layer="layer4-2">August NDVI 2015</button>
+              <button class="layer-btn" data-layer="layer4-3">December NDVI 2015</button>
+              <button class="layer-btn" data-layer="layer4-4">40cm Soil Moisture</button>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">Drought Analysis (Huahie River Basin, China)</h2>
+            <p class="project-description mt-4">
+              In this project, I assessed drought conditions in the Huaihe River Basin, China (2015), by calculating NDVI using MODIS data. NDVI from MOD13Q1 (MODIS/Terra Vegetation Indices 16-Day L3 Global 250m) was analyzed for March, August, and December, while 40 cm soil moisture was interpolated from 37 observation points to generate detailed maps. The resulting drought and vegetation maps provide comprehensive seasonal insights into basin dynamics.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Spatial Interpolation (Kriging)</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">NDVI</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Change Detection</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Geopandas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project" id="project5">
+          <div class="map-container">
+            <div id="map5" class="map"></div>
+            <div class="layer-control">
+              <button class="layer-btn active" data-layer="layer5-1">CDI 2022</button>
+              <button class="layer-btn" data-layer="layer5-2">SMCI 2022</button>
+              <button class="layer-btn" data-layer="layer5-3">SPEI 2022</button>
+              <button class="layer-btn" data-layer="layer5-4">TVDI 2022</button>
+            </div>
+          </div>
+          <div class="project-info">
+            <h2 class="project-title">Drought Analysis (Punjab, Pakistan)</h2>
+            <p class="project-description mt-4">
+              In this project, I developed a Composite Drought Index for Punjab, Pakistan (2001–2022) by integrating calculated Soil Moisture Condition Index (SMCI), the Temperature Vegetation Dryness Index (TVDI), and the Standardized Precipitation Evapotranspiration Index (SPEI). Drought conditions were assessed using MODIS remote sensing data from MOD13Q1 (MODIS/Terra Vegetation Indices 08-Day L3 Global 250m) for NDVI and MOD11A1 (MODIS/Terra Land Surface Temperature/Emissivity Daily L3 Global 1km) for LST, with 2022 drought maps prominently displayed.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Pixel-Based Classification</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">GDAL</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Landsat</span>
+              <span class="bg-blue-50 text-primary px-3 py-1 rounded-full text-sm">Google Earth Engine</span>
+            </div>
+          </div>
+        </div>
+        <!-- for more projects -->
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="featured" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Showcase</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">Featured Projects</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8">
+        <!-- Featured Project 1 -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5">
+              <img
+                src="images\aqi.png"
+                alt="Amazon Deforestation Monitoring" 
+                class="w-full h-full object-contain"> <!-- Changed to object-contain -->
+            </div>
+            <div class="md:w-3/5 p-8">
+              <h3 class="text-2xl font-bold mb-4 text-dark">Comparative Urban Air Quality Analysis Tool</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                This interactive Earth Engine application enables users to monitor and compare air quality across major cities by visualizing pollutant concentrations over two distinct time periods. Users can select a city, set custom date ranges, and toggle multiple atmospheric layers to observe changes in air composition, facilitating detailed before-and-after analyses.
+              </p>
+              <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                  <i class="fas fa-trophy mr-2 text-primary"></i>Key Achievements
+                </h4>
+                <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+                  <li>Enables side-by-side analysis of pollutants across global cities, helping track urban air quality trends.</li>
+                  <li>Comparisons between any two time periods, aiding before-and-after pollution studies.</li>
+                  <li>Visualizes key pollutants (PM2.5, NO₂, CO, etc.) with toggleable layers for detailed air composition insights.</li>
+                </ul>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Google Earth
+                  Engine</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Python</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Sentinel-5P</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Machine
+                  Learning</span>
+              </div>
+              <a href="https://code.earthengine.google.com/5fb39c7cffba934b1725efb0a748e885"
+                class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                <i class="fas fa-file-alt mr-2"></i>View Project
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Project 2 -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5">
+              <img
+                src="images\vhi.png"
+                alt="Coastal Erosion Analysis" class="w-full h-full object-contain ">
+            </div>
+            <div class="md:w-3/5 p-8">
+              <h3 class="text-2xl font-bold mb-4 text-dark">Vegetation Health Index (VHI) Monitoring Tool</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                This interactive Earth Engine tool computes the Vegetation Health Index (VHI) by analyzing MODIS NDVI and LST data over user-defined date ranges and geographic areas. Users can select a country as the area of interest and visualize vegetation health through a color-coded map, providing insights into tree and ecosystem vitality.
+              </p>
+              <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                  <i class="fas fa-trophy mr-2 text-primary"></i>Key Achievements
+                </h4>
+                <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+                  <li>Computes VHI for 100+ country worldwide using MODIS satellite data (NDVI & LST).</li>
+                  <li>Allows vegetation health tracking over timeframes, enabling drought or seasonal impact studies.</li>
+                  <li>Displays VHI via an intuitive color-gradient map (healthy to stressed vegetation) for actionable insights.</li>
+                </ul>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Vegetation Stress Detection</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Drought Monitoring</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">MODIS</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Global Vegetation Monitoring</span>
+              </div>
+              <a href="https://code.earthengine.google.com/9860f73b3be455953ef07dd81e629bfd"
+                class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                <i class="fas fa-file-alt mr-2"></i>View Project
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Featured Project 3 -->
+        <div
+        class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100">
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-2/5">
+            <img
+              src="images\wf.png"
+              alt="Coastal Erosion Analysis" class="w-full h-full object-contain ">
+          </div>
+          <div class="md:w-3/5 p-8">
+            <h3 class="text-2xl font-bold mb-4 text-dark">Wildfire Impact Assessment via dNBR Calculation</h3>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              This interactive Earth Engine application quantifies wildfire impacts by calculating the difference in Normalized Burn Ratio (dNBR) between pre-fire and post-fire periods using Landsat 8 data. Users can select custom date ranges and areas of interest to generate composite images that highlight burned regions. The app visualizes the extent of fire damage and computes an approximate burned area, offering valuable insights for wildfire management and environmental monitoring.
+            </p>
+            <div class="mb-6">
+              <h4 class="font-semibold mb-3 text-dark flex items-center">
+                <i class="fas fa-trophy mr-2 text-primary"></i>Key Achievements
+              </h4>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+                <li>Calculates dNBR using Landsat 8 data to classify fire damage into 4+ severity levels.</li>
+                <li>Supports analysis for any wildfire event, comparing pre and post fire conditions with adjustable date ranges.</li>
+                <li>Computes approximate affected area (in hectares/km²), aiding rapid damage assessment.</li>
+              </ul>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">NBR (Normalized Burn Ratio)</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Satellite-Based Fire Monitoring</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Fire Severity Classification</span>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Environmental Disaster Assessment</span>
+            </div>
+            <a href="https://code.earthengine.google.com/9860f73b3be455953ef07dd81e629bfd"
+              class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+              <i class="fas fa-file-alt mr-2"></i>View Project
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Feature Project 4 -->
+      <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden border border-gray-100">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5">
+              <img
+                src="images\seg3.png"
+                alt="Coastal Erosion Analysis" class="w-full h-full object-contain ">
+            </div>
+            <div class="md:w-3/5 p-8">
+              <h3 class="text-2xl font-bold mb-4 text-dark">AI Image Segmentation and GeoTIFF Downloader App</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                This application enables users to retrieve high-resolution GeoTIFF imagery from Google Satellite basemaps and perform semantic segmentation via the Segment-Geospatial Python library. It automates the extraction of geospatial features, generating vectorized GeoJSON outputs for downstream analysis. The tool integrates raster data acquisition, Deep Learning-based segmentation, and vector data export into a streamlined workflow. This solution optimizes geospatial analysis workflows by bridging satellite imagery acquisition and feature extraction.
+              </p>
+              <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-dark flex items-center">
+                  <i class="fas fa-trophy mr-2 text-primary"></i>Key Achievements
+                </h4>
+                <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+                  <li>Downloads sub-meter resolution GeoTIFFs from Google Satellite basemaps for precise geospatial analysis.</li>
+                  <li>Leverages Segment-Geospatial model to auto-detect and classify features with pixel-level accuracy.</li>
+                  <li>Generates ready-to-use GeoJSON files, eliminating manual digitization and saving 90%+ processing time.</li>
+                </ul>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">SamGeo (Segment Anything Model for Geospatial Data)</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Deep Learning for GIS</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">GeoJSON Automation</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Feature Extraction (Remote Sensing)</span>
+              </div>
+              <a href="https://code.earthengine.google.com/9860f73b3be455953ef07dd81e629bfd"
+                class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all">
+                <i class="fas fa-file-alt mr-2"></i>View Project
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Feature project 5 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+<section id="testimonials" class="py-20 bg-light">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Client Feedback</span>
+      <h2 class="text-4xl font-bold text-dark mb-4">What My Clients Say</h2>
+      <div class="w-20 h-1 bg-primary mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Tayyab Shah</h4>
+            <p class="text-gray-500 text-sm">Geospatial research manager at the Canadian Hub for Applied and Social Research (CHASR), University of Saskatchewan</p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The geospatial analysis provided exceptional insights into our environmental monitoring program. Highly recommended for complex spatial data challenges."</p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Muhammad Hamza Wahla</h4>
+            <p class="text-gray-500 text-sm">Founder & CEO @ SpatialOX</p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The remote sensing solutions transformed our urban planning processes. Accurate, timely, and presented in an easily digestible format."</p>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Dr Sajjad Bashir</h4>
+            <p class="text-gray-500 text-sm">Agricultural Engineer | Research Analyst GIS</p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The crop monitoring system developed for our research has exceeded expectations in both accuracy and usability."</p>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Samman Aziz</h4>
+            <p class="text-gray-500 text-sm">M&E Manager @ R2V | GIS specialist |Remote Sensing & GIS </p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The flood extent mapping provided critical data for our relief efforts, helping us allocate resources more effectively during emergencies."</p>
+      </div>
+
+      <!-- Testimonial 5 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Dr Shoaib Saleem</h4>
+            <p class="text-gray-500 text-sm">Professor @ DDSDP PMAS AAUR</p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The drought monitoring tools developed have become an essential part of our climate change research methodology."</p>
+      </div>
+
+      <!-- Testimonial 6 -->
+      <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100">
+        <div class="flex items-center mb-4">
+          <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-primary/10 rounded-xl text-primary">
+            <i class="fas fa-user-circle text-2xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-semibold text-dark">Dr. Muhammad Amin </h4>
+            <p class="text-gray-500 text-sm">Assistant Professor @ PMAS AAUR | Ph.D, Geo-Information</p>
+          </div>
+        </div>
+        <p class="text-gray-600 italic">"The drought monitoring tools developed have become an essential part of our climate change research methodology."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Career</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">Professional Experience</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <!-- Experience 1 -->
+        <div class="mb-12 relative timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-xl mr-6">
+                <i class="fas fa-building text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-dark">GIS Developer</h3>
+                <p class="text-gray-600">TechGIS PVT Limited</p>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6 font-medium"><i class="far fa-calendar-alt mr-2 text-primary"></i>Octuber 2024 -
+              Present</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-3 pl-4">
+              <li>development of Earth Engine-based applications using Python (Flask/Django) and JavaScript (React/Leaflet), visualization of large-scale satellite datasets.</li>
+              <li>Integrated TensorFlow/PyTorch with geospatial libraries (e.g., GDAL, Rasterio) to operationalize models for wildfire risk prediction and urban sprawl analysis, achieving >85% accuracy in validation tests.</li>
+              <li>Optimized GeoTIFF chunking and COG (Cloud-Optimized GeoTIFF) streaming using GDAL’s tile-based I/O, reducing memory usage by 40% during large-scale raster operations.</li>
+              <li>Conduct advanced spatial analysis and modeling.</li>
+            </ul>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-3 text-dark flex items-center">
+                <i class="fas fa-tools mr-2 text-primary"></i>Technologies
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">GDAL/OGR</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Geopandas</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">QGIS</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">JavaScript (GEE)</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Remote Sensing</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Mapbox OpenLayers Leaflet</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">ArcGIS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 2 -->
+        <div class="mb-12 relative timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-xl mr-6">
+                <i class="fas fa-water text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-dark">GIS Analyst Intern</h3>
+                <p class="text-gray-600">SpatialOX PVT LTD</p>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6 font-medium"><i class="far fa-calendar-alt mr-2 text-primary"></i>May 2023
+              - June 2024</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-3 pl-4">
+              <li>(PostGIS/SQLite) for structured geodata storage and query optimization.</li>
+              <li>(Python/Flask) for automated geodata format conversion (GeoJSON↔Shapefile/KML).</li>
+              <li>Enhanced Mapbakes (SpatialOX) with CRS transformation tools and batch processing features.</li>
+              <li>Collaborated with SpatialOX's Shoify Management Team</li>
+            </ul>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-3 text-dark flex items-center">
+                <i class="fas fa-tools mr-2 text-primary"></i>Technologies
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">PROJ,PyProj</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Fiona,Rasterio</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Automated Batch Processing Geospatial workflows</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">PostGIS</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Shapefile,GeoJSON,KML</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Experience 3 -->
+        <div class="mb-12 relative timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex items-center mb-6">
+              <div class="w-14 h-14 flex items-center justify-center bg-primary/10 rounded-xl mr-6">
+                <i class="fas fa-water text-primary text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-dark">Google Earth Engine Developer Intern</h3>
+                <p class="text-gray-600">Pakistan Meteorological Department</p>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6 font-medium"><i class="far fa-calendar-alt mr-2 text-primary"></i>May 2022
+              - September 2022</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-3 pl-4">
+              <li>Developed NDWI/NDVI indices in Google Earth Engine for Punjab’s water/vegetation monitoring using Landsat/Sentinel-2 data.</li>
+              <li>Performed geospatial analysis in ArcGIS Pro (IDW interpolation, raster masking, zonal stats) for environmental studies.</li>
+              <li>Analyzed PMD weather station data (Python/Pandas) to identify climate trends and anomalies.</li>
+              <li>Automated geospatial workflows using Python scripting (ArcPy, GDAL) to streamline raster/vector processing and reduce manual effort by 60%.</li>
+            </ul>
+            <div class="mt-6">
+              <h4 class="font-semibold mb-3 text-dark flex items-center">
+                <i class="fas fa-tools mr-2 text-primary"></i>Technologies
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Time-Series Analysis (weather station data)</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Anomaly Detection</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Google Earth
+                  Engine</span>
+                <span
+                  class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">Remote Sensing Indices (NDVI, NDWI)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Background</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">Education & Training</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Education 1 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 flex items-center justify-center bg-blue-100 rounded-xl mr-6">
+              <i class="fas fa-graduation-cap text-primary text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">Bachlors of Engineering</h3>
+              <p class="text-gray-600">Geographic Information Science and Remote Sensing</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-medium"><i class="fas fa-university mr-2 text-primary"></i>PMAS AAUR, 2020-2024</p>
+          <div class="mb-6">
+            <h4 class="font-semibold mb-3 text-dark flex items-center">
+              <i class="fas fa-book-open mr-2 text-primary"></i>Relevant Coursework
+            </h4>
+            <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+              <li>Advanced Spatial Analysis</li>
+              <li>Remote Sensing & Image Processing</li>
+              <li>GIS Programming & Automation</li>
+              <li>Spatial Database Design</li>
+              <li>Geovisualization & Cartography</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2 text-dark flex items-center">
+              <i class="fas fa-file-alt mr-2 text-primary"></i>Final Year Project
+            </h4>
+            <p class="text-gray-600">
+              "National Spatial Database Infrastructure (NSDI) Design for Pakistan"
+            </p>
+          </div>
+        </div>
+
+        <!-- Education 2 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 flex items-center justify-center bg-blue-100 rounded-xl mr-6">
+              <i class="fas fa-graduation-cap text-primary text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">Secondary Education</h3>
+              <p class="text-gray-600">Pre Engineering</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-medium"><i class="fas fa-university mr-2 text-primary"></i>Chenab College Jhang, 2017-2020</p>
+          <div class="mb-6">
+            <h4 class="font-semibold mb-3 text-dark flex items-center">
+              <i class="fas fa-book-open mr-2 text-primary"></i>Relevant Coursework
+            </h4>
+            <ul class="list-disc list-inside text-gray-600 space-y-2 pl-4">
+              <li>Calculus</li>
+              <li>Applied Physics</li>
+              <li>Mechanics</li>
+              <li>Electronics</li>
+            </ul>
+          </div>
+          <!-- <div>
+            <h4 class="font-semibold mb-2 text-dark flex items-center">
+              <i class="fas fa-file-alt mr-2 text-primary "></i>Senior Project
+            </h4>
+            <p class="text-gray-600">
+              "Mapping Urban Heat Islands Using Landsat Thermal Data: A Case Study of Portland, Oregon"
+            </p>
+          </div> -->
+        </div>
+
+        <!-- Certification 1 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 flex items-center justify-center bg-blue-100 rounded-xl mr-6">
+              <i class="fas fa-award text-primary text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">Certificate of Internship</h3>
+              <p class="text-gray-600">Google Earth Engine Development</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-medium"><i class="fas fa-certificate mr-2 text-primary"></i>Pakistan Meteorological Department, 2022</p>
+          <p class="text-gray-600">
+            Worked on Google Earth Engine (NDWLNDVI Index For Punjab), ArcGIS (Interpolation, Masking, Raster Analysis), PMD Stations Data Analysis, and Crop Water Requirement: Crop Monitoring Using Satellite Based Indices
+          </p>
+        </div>
+
+        <!-- Certification 2 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 flex items-center justify-center bg-blue-100 rounded-xl mr-6">
+              <i class="fas fa-certificate text-primary text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">Certificate of Experience</h3>
+              <p class="text-gray-600">Geospatial Database, Analysis and Cartography</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-medium"><i class="fas fa-certificate mr-2 text-primary"></i>SpatialOX PVT LTD, 2023</p>
+          <p class="text-gray-600">
+            In this tensure I worked on webGIS based format converter app. I also contributed in the map generation process of the SpatialOX product MapBakes.
+          </p>
+        </div>
+
+        <!-- Certification 3 -->
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 flex items-center justify-center bg-blue-100 rounded-xl mr-6">
+              <i class="fas fa-certificate text-primary text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-dark">Certificate of Best Performance</h3>
+              <p class="text-gray-600">Geospatial Automation</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-medium"><i class="fas fa-certificate mr-2 text-primary"></i>JABS (USA), 2023</p>
+          <p class="text-gray-600">
+            Received this award for my outstanding performance in the Remote Sensing techniques in the multiple projects from American company JABS and Pakistani company SpatialOX PVT LTD.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold tracking-widest text-sm uppercase mb-4 inline-block">Connect</span>
+        <h2 class="text-4xl font-bold text-dark mb-4">Get In Touch</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-8 w-full px-4 mx-auto justify-center items-center">
+
+        <div class="md:w-1/2">
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+            <h3 class="text-2xl font-bold mb-6 text-dark flex items-center">
+              <i class="fas fa-address-card mr-3 text-primary"></i>Contact Information
+            </h3>
+
+            <div class="space-y-6 mb-8">
+              <div class="flex items-start">
+                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-xl mr-4 mt-1">
+                  <i class="fas fa-envelope text-primary text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                  <p class="text-gray-600">fahad.fhk2103@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-xl mr-4 mt-1">
+                  <i class="fas fa-phone-alt text-primary text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Phone</h4>
+                  <p class="text-gray-600">(+92)349-0029815</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-xl mr-4 mt-1">
+                  <i class="fas fa-map-marker-alt text-primary text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Location</h4>
+                  <p class="text-gray-600">Islamabad, Pakistan</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-6 text-dark flex items-center">
+              <i class="fas fa-share-alt mr-3 text-primary"></i>Connect
+            </h3>
+
+            <div class="flex space-x-4 mb-8">
+              <a href="#"
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-xl text-primary hover:bg-primary hover:text-white transition-colors">
+                <i class="fab fa-linkedin-in text-lg"></i>
+              </a>
+            </div>
+
+            <!-- <div class="h-64 bg-gray-100 rounded-xl overflow-hidden">
+              <div class="w-full h-full"
+                style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Seattle,WA&zoom=12&size=600x400&maptype=roadmap&markers=color:red%7CSeattle,WA&key=YOUR_API_KEY'); background-size: cover; background-position: center;">
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-start">
+        <div class="mb-8 md:mb-0">
+          <a href="#" class="text-2xl logo-font text-white mb-4 inline-block">Fahad Karim</a>
+          <p class="text-gray-400 max-w-md">
+            Transforming complex spatial data into actionable insights through advanced GIS and remote sensing
+            technologies.
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-12">
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-white">Quick Links</h3>
+            <ul class="space-y-3">
+              <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+              <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a></li>
+              <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          
+        </div>
+      </div>
+
+      <hr class="border-gray-800 my-8">
+
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">
+          &copy; 2025 Fahad karim. All rights reserved.
+        </p>
+
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fab fa-linkedin-in text-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- Leaflet GeoTIFF plugin -->
+  <script src="https://unpkg.com/georaster-layer-for-leaflet"></script>
+  <!-- GeoTIFF parsing library -->
+  <script src="https://cdn.jsdelivr.net/npm/georaster"></script>
+  <script src="leaflet.js"></script>
+</body>
+
+</html>

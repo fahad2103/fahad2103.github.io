@@ -1,0 +1,248 @@
+body {
+  font-family: 'Manrope', sans-serif;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.logo-font {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 3rem;
+}
+
+.timeline-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #4ECDC4, #0F4C81);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0F4C81;
+  border: 3px solid #4ECDC4;
+  box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2);
+}
+
+.map-toggle-btn.active {
+  background-color: rgba(255, 255, 255, 1);
+  color: #0F4C81;
+  font-weight: 500;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0F4C81;
+  box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.1);
+}
+/* Ticker */
+.ticker-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px 0;
+  margin: 3 auto;
+  margin-bottom: 30px;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.ticker-item {
+  flex: 0 0 auto;
+  padding: 0 clamp(15px, 3vw, 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticker-item img {
+  height: clamp(30px, 5vw, 50px);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.ticker-item:hover img {
+  transform: scale(1.1);
+}
+
+.ticker-item span {
+  margin-top: 8px;
+  font-size: clamp(10px, 2vw, 12px);
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Projects Styling */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.map-container {
+  position: relative;
+  height: 450px; 
+  width: 100%;
+  z-index: 1;  /* Lower z-index than navbar */
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.project-info {
+  padding: 10px;
+}
+
+.project-title {
+  font-size: 35px;
+  margin-top: 0;
+  color: #000000;
+}
+
+.project-description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.layer-control {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+.layer-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.layer-btn.active {
+  background: #081c2a;
+}
+
+.layer-btn:hover {
+  background: #081c2a;
+}
+
+/* Media Queries for Responsive Design */
+@media (min-width: 768px) {
+  .project {
+      flex-direction: row;
+  }
+  
+  .map-container {
+      flex: 2;  /* Increased flex ratio to make map larger */
+      height: 600px;  /* Increased height for tablets */
+      min-width: 0;
+  }
+  
+  .project-info {
+      flex: 1;
+  }
+  
+  .layer-btn {
+      font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  .map-container {
+      min-width: 600px;  /* Increased minimum width */
+      height: 700px;  /* Increased height for desktop */
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-container {
+      padding: 10px;
+      gap: 20px;
+  }
+  
+  .project {
+      padding: 15px;
+  }
+  
+  .map-container {
+      height: 350px;  /* Increased height for mobile */
+  }
+  
+  .project-title {
+      font-size: 20px;
+  }
+  
+  .layer-control {
+      max-width: 120px;
+      padding: 5px;
+  }
+  
+  .layer-btn {
+      padding: 4px 8px;
+      margin-bottom: 3px;
+      font-size: 11px;
+  }
+}
